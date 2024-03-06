@@ -139,6 +139,25 @@
 
         List<Integer> listWithoutDuplicates = new ArrayList<>(new LinkedHashSet<>(listWithDuplicates));
 
+        или
+
+        public static HashSet<Integer> duplicate(int[] arr) {
+                HashSet<Integer> set = new HashSet<>();
+                for (Integer num:arr) {
+                    set.add(num);
+                }
+                return set;
+
+        вывести дублирующие элементы в виде списка
+         Set<Integer> listWithNoDuplicates = new HashSet<>();
+                Set<Integer> tempSet = new HashSet<>();
+
+                for (int num : listWithDuplicates) {
+                    if (!tempSet.add(num)) { // если num уже есть в tempSet ->
+                        listWithNoDuplicates.add(num); // добавляем num в список дубликатов
+                    }
+                }
+
 10. Проверить соответствуют ли элементы массива шаблону e-mail с помощью регулярных выражений
         String[] emailList = { "test@mail.ru", "123-kkdf@gmail.com", "123@343.com", "123123@yandex.com", "test.test@gmail.com", "sdfsdf@gmail." }
          String emailPattern = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}$";
@@ -147,3 +166,63 @@
                     boolean validEmail = Pattern.matches(emailPattern, email);
                     System.out.println(email + " " + validEmail);
                 }
+
+11. Дайте пример кода, который сортирует список строк с использованием коллекции.
+         String[] array = {"a", "d", "b", "e", "c"};
+
+                List<String> list = new ArrayList<>();
+                for(String str : array) {
+                    list.add(str);
+                }
+                Collections.sort(list);
+                System.out.println(list);
+
+12. Напишите функцию, которая переворачивает число (порядок цифр в нем изменяет на противоположный, инвертирует).
+    чтобы проверить на палидром - сделать метод boolean и сравнить с оригинальным числом
+         public static int reverseNumber(int number) {
+                int reversed = 0; // создаем переменную для хранения перевернутого числа
+                while (number != 0) { // пока число не равно 0
+                    int digit = number % 10; // получаем последнюю цифру числа
+                    reversed = reversed * 10 + digit; // увеличиваем на 1 разряд и прибавляем последнюю цифру
+                    number /= 10; // уменьшаем число на один разряд, удаляя последнюю цифру
+                }
+                return reversed; // возвращаем перевернутое число
+            }
+13. поменять значения переменных
+с использованием третьей переменной            без использования третьей переменной
+        temp = a;                                   a = a + b;
+        a = b;                                      b = a - b;
+        b = temp;                                   a = a - b;
+
+14. проверить, что число простое (делится только на 1 и на само себя без остатка)
+       boolean isPrime = true;
+            int a = 8;
+            if (a <= 1) {
+                isPrime = false;
+            } else {
+                for (int i = 2; i < Math.sqrt(a); i++) {
+                    if (a % i == 0) {
+                        isPrime = false;
+                        break;
+                    }
+                }
+            }
+            if (isPrime) {
+                System.out.println("yes");
+            } else {
+                System.out.println("no");
+            }
+
+15. найти второе по величине значение в массиве
+      int max = arr[0];
+            int premax = arr[0];
+
+            for (int i = 0; i < arr.length; i++) {
+              if (arr[i] > max) {
+                  premax = max;
+                  max = arr[i];
+              } else if (arr[i] > premax && arr[i] != max) {
+                  premax = arr[i];
+              }
+            }
+            return premax;

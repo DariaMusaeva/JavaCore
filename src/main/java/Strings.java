@@ -1,3 +1,6 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Strings {
 
     /*    Перевернуть строку без использования методов типа reverse и класса String
@@ -22,8 +25,8 @@ public class Strings {
         return tmp;
     }
 
-    /* Реализовать метод, который будет возвращать количество передаваемого символа в слове
-    Пример: countCharAtWord('a', \"Aligator\") = 2 */
+    // Реализовать метод, который будет возвращать количество передаваемого символа в слове
+    //Пример: countCharAtWord('a', \"Aligator\") = 2
     public static int counterCharAtWord(char c, String word) {
         int count = 0;
         for (int i = 0; i < word.length(); i++) {
@@ -32,6 +35,64 @@ public class Strings {
             }
         }
         return count;
+    }
+
+    //реализовать метод, который будет возвращать количество подстрок в строке
+       public static int word(String str) {
+        int count = 0;
+        Pattern pattern = Pattern.compile("co[a-z]e");
+        Matcher matcher = pattern.matcher(str);
+
+        while (matcher.find()) {
+            count++;
+        }
+        return count;
+    }
+
+
+    //Напишите функцию, которая проверяет, что строка является полиндромом
+    public static boolean isPalindrome(String str) {
+        int left = 0;
+        int right = str.length() - 1;
+
+        while (right > left) {
+            if (str.charAt(left) != str.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+
+
+    //посимвольно вставить короткую строку в длинную
+    public static String word(String a, String b) {
+        int minString = Math.min(a.length(), b.length());
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < minString; i++) {
+            result.append(a.charAt(i)).append(b.charAt(i));
+        }
+
+        if (a.length() > b.length()) {
+            result.append(a.substring(minString));
+        } else if (b.length() > a.length()) {
+            result.append(b.substring(minString));
+        }
+        return result.toString();
+    }
+
+    //заменить символы в строке
+    public static String symbol(String string, char old, char newChar) {
+        char[] arr = string.toCharArray();
+        for (int i = 0; i < arr.length; i++) {
+            char c = arr[i];
+            if (c == old) {
+                arr[i] = newChar;
+            }
+        }
+        return String.valueOf(arr);
     }
 }
 
